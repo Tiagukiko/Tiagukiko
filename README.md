@@ -96,4 +96,83 @@
 </footer>
 
 </body>
+</html> <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Comprar PES 2013 + Patch 2025</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #28a745;
+      color: white;
+      font-size: 16px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Login para Comprar</h2>
+  <input type="email" id="email" placeholder="Digite seu Gmail" required>
+  <input type="text" id="nome" placeholder="Seu nome completo" required>
+  <button onclick="enviarCompra()">Confirmar Compra</button>
+</div>
+
+<script>
+  (function(){
+    emailjs.init("YOUR_USER_ID"); // Substitua pelo seu ID do EmailJS
+  })();
+
+  function enviarCompra() {
+    const email = document.getElementById("email").value;
+    const nome = document.getElementById("nome").value;
+
+    if (!email || !nome) {
+      alert("Preencha todos os campos!");
+      return;
+    }
+
+    const templateParams = {
+      to_email: email,
+      nome_cliente: nome,
+      codigo_compra: Math.floor(Math.random() * 999999)
+    };
+
+    emailjs.send('default_service', 'template_bepes', templateParams)
+      .then(function(response) {
+        alert("Compra confirmada! Um e-mail foi enviado.");
+        window.location.href = "https://wa.me/5548998023938?text=Olá,%20meu%20nome%20é%20" + encodeURIComponent(nome) + "%20e%20meu%20código%20de%20compra%20é%20" + templateParams.codigo_compra;
+      }, function(error) {
+        alert("Erro ao enviar e-mail. Tente novamente.");
+      });
+  }
+</script>
+
+</body>
 </html>
